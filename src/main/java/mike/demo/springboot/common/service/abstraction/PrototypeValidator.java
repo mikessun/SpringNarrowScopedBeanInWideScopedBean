@@ -5,5 +5,5 @@ import org.springframework.validation.Errors;
 public interface PrototypeValidator {
     public Errors validate(Object o);
 
-    public int getCount();
+    public long getRandomNumber();
 }

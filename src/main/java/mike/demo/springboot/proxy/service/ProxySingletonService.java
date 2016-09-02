@@ -23,4 +23,14 @@ public class ProxySingletonService extends AbstractSingletonService {
         log.info("processing {}", requestParamWrapper);
         return super.process(requestParamWrapper);
     }
+
+    @Override
+    public PrototypeValidator getPrototypeValidator() {
+        return prototypeValidator;
+    }
+
+    @Override
+    public long getRandomNumber() {
+        return prototypeValidator.getRandomNumber();
+    }
 }

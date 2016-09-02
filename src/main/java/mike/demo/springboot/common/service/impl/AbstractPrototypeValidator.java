@@ -9,14 +9,9 @@ import org.springframework.validation.ValidationUtils;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public abstract class AbstractPrototypeValidatorImpl implements PrototypeValidator {
+public abstract class AbstractPrototypeValidator implements PrototypeValidator {
     public static final String NAME = "name";
     public static final String AGE = "age";
-    private static AtomicInteger count = new AtomicInteger(0);
-
-    public AbstractPrototypeValidatorImpl() {
-        count.addAndGet(1);
-    }
 
     @Override
     public Errors validate(Object o) {
@@ -27,15 +22,10 @@ public abstract class AbstractPrototypeValidatorImpl implements PrototypeValidat
         RequestParamWrapper requestParamWrapper = (RequestParamWrapper) o;
         if (requestParamWrapper.getAge() < 0) {
             errors.rejectValue("age", "negativevalue");
-        } else if (requestParamWrapper.getAge() > 110) {
+        } else if (requestParamWrapper.getAge() % 2 == 0) {
             errors.rejectValue("age", "too.darn.old");
         }
 
         return errors;
-    }
-
-    @Override
-    public int getCount() {
-        return count.get();
     }
 }

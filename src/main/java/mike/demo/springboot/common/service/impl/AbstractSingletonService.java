@@ -9,13 +9,11 @@ import org.springframework.validation.Errors;
 
 @Slf4j
 @Service
-public class AbstractSingletonService implements SingletonService {
-    protected PrototypeValidator prototypeValidator;
-
+public abstract class AbstractSingletonService implements SingletonService {
     @Override
     public int process(RequestParamWrapper requestParamWrapper) {
         log.info("Processing {}", requestParamWrapper);
-        Errors validate = prototypeValidator.validate(requestParamWrapper);
+        Errors validate = getPrototypeValidator().validate(requestParamWrapper);
         return validate.getErrorCount();
     }
 }
