@@ -14,11 +14,6 @@ import java.lang.annotation.Target;
         ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Qualifier
-public @interface OperatingSystemQualifier {
-    OperatingSystems value();
-
-    public static enum OperatingSystems {
-        Windows,
-        Linux
-    }
+public @interface PrototypeQualifier {
+    PrototypeImplType value();
 }

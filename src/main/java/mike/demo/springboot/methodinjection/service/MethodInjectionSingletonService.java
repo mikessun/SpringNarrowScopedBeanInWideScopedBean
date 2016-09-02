@@ -1,18 +1,18 @@
 package mike.demo.springboot.methodinjection.service;
 
 import lombok.extern.slf4j.Slf4j;
+import mike.demo.springboot.common.annotation.PrototypeImplType;
+import mike.demo.springboot.common.annotation.PrototypeQualifier;
 import mike.demo.springboot.common.model.RequestParamWrapper;
 import mike.demo.springboot.common.service.abstraction.PrototypeValidator;
-import mike.demo.springboot.common.service.abstraction.SingletonService;
+import mike.demo.springboot.common.service.impl.AbstractSingletonService;
 import org.springframework.beans.factory.annotation.Lookup;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Errors;
 
 @Service
 @Slf4j
-@Qualifier("method.injection.single.service")
-public class SingletonServiceImpl implements SingletonService{
+@PrototypeQualifier(PrototypeImplType.SPRING_COUPLED)
+public class MethodInjectionSingletonService extends AbstractSingletonService {
 
     @Lookup
     public PrototypeValidator getPrototypeValidator() {
@@ -21,8 +21,7 @@ public class SingletonServiceImpl implements SingletonService{
 
     @Override
     public int process(RequestParamWrapper requestParamWrapper) {
-        log.info("processing "+requestParamWrapper);
-        Errors errors=getPrototypeValidator().validate(requestParamWrapper);
-        return getPrototypeValidator().getCount();
+        log.info("processing {}", requestParamWrapper);
+        return super.process(requestParamWrapper);
     }
 }

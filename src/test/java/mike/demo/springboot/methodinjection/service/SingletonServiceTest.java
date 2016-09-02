@@ -1,16 +1,20 @@
 package mike.demo.springboot.methodinjection.service;
 
+import mike.demo.springboot.SpringBootNarrowScopedInWideScopedBeanDemoApplication;
 import mike.demo.springboot.common.model.RequestParamWrapper;
 import mike.demo.springboot.common.service.abstraction.SingletonService;
-import mike.demo.springboot.methodinjection.SpringBootNarrowScopedInWideScopedBeanDemoApplication;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.comparesEqualTo;
 
-
+@ContextConfiguration
+@RunWith(SpringJUnit4ClassRunner.class)
 public class SingletonServiceTest {
     private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 

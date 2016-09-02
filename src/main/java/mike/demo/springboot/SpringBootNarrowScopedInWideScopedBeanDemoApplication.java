@@ -1,4 +1,4 @@
-package mike.demo.springboot.methodinjection;
+package mike.demo.springboot;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
